@@ -74,60 +74,11 @@ public class PhoneBook implements Book {
 
 
     private String phonePattern() {
-        String group1 = "(\\s)(\\w{2,})";
-        String group3 = "([-\\s])(\\w{2,})";
-        String group4 = "([-\\s])(\\w{2,})";
-        String group1P = "(\\(\\w{2,}\\))";
-        String group3P = "([-\\s])(\\(\\w{2,}\\))";
-        //String group4P = "([-\\s])(\\(\\w{1,}\\))";
-        //123
-        String case1 = "^(\\w{1,3})";
-        //123 abc
-        String case2 = case1 + group3;
-        //123 abc 2421
-        String case3 = case2 + group3;
-        // 123 abc 232 1232
-        String case4 = case3 + group4;
-        // (123)
-        String case5 = "^(\\(\\w{1,3}\\))";
-        // (123) abc
-        String case6 = case5 + group3;
-        // (123) abc abc
-        String case7 = case6 + group3;
-        // (123) 123 123 123
-        String case8 = case7 + group4;
-        // +012
-        String case9 = "([+]\\w{1,})";
-        // +112 abc
-        String case10 = case9 + group1;
-        // +112 abc abc
-        String case11 = case10 + group3;
-        // +112 abc abc abc
-        String case12 = case11 + group4;
-        // +012 (abc)
-        String case13 = case12 + group1P;
-        // +022 (abc) abc
-        String case14 = case13 + group3;
-        // +122 (abc) abc abc
-        String case15 = case14 + group4;
-        // +121 abc (abc)
-        String case16 = case15 + group3P;
-        // +112 abc (abc) abc
-        String case17 = case16 + group4;
-        // 123 (123)
-        String case18 = case1 + group3P;
-        // 123 (123) 123
-        String case19 = case18 + group3;
-        // 123 (123) 123 123
-        String case20 = case19 + group4;
-        // +(word)
-        String case21 = "([+]\\(\\w+\\))";
-        return case1 + "|" + case2 + "|" + case3 + "|"
-                + case4 + "|" + case5 + "|" + case6 + "|" + case7 + "|"
-                + case8 + "|" + case9 + "|" + case10 + "|"
-                + case11 + "|" + case12 + "|" + case13 + "|"
-                + case14 + "|" + case15 + "|" + case16 + "|" + case17+"|"
-                + case18 + "|" + case19 + "|" + case20+"|"+ case21;
+        return  "^\\+?\\w{0,}[- ]?(\\w{2,})?([- ]\\w{2,})?([- ]\\w{2,})?$"+"|"
+                +"^\\(\\w{0,}\\)([- ]\\w{0,})?([- ]\\w{0,})?$"+"|"
+                +"^\\w{0,}[- ]\\(\\w{0,}\\)([- ]\\w{0,})?([- ]\\w{0,})?$|^\\+\\(\\w+\\)$";
+
+
 
     }
 
