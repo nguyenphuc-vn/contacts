@@ -1,12 +1,13 @@
 package personal.contacts;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
+import java.time.format.DateTimeFormatter;
+
 
 public abstract class People {
     private String name;
     private String number;
-    private LocalDateTime createdTime;
+    private  LocalDateTime createdTime;
     private LocalDateTime editedTime;
 
     public People(String name, String number) {
@@ -16,38 +17,12 @@ public abstract class People {
         this.editedTime = LocalDateTime.now();
     }
 
-    public People() {
-
+    public LocalDateTime getCreatedTime() {
+        return createdTime;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        People people = (People) o;
-        return Objects.equals(name, people.name)
-                && Objects.equals(number, people.number)
-                && Objects.equals(createdTime, people.createdTime)
-                && Objects.equals(editedTime, people.editedTime);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, number, createdTime, editedTime);
-    }
-
-    @Override
-    public String toString() {
-        return "People{" +
-                "name='" + name + '\'' +
-                ", number='" + number + '\'' +
-                ", createdTime=" + createdTime +
-                ", editedTime=" + editedTime +
-                '}';
-    }
-
-    public String getName() {
-        return name;
+    public LocalDateTime getEditedTime() {
+        return editedTime;
     }
 
     public void setName(String name) {
@@ -62,16 +37,19 @@ public abstract class People {
         this.number = number;
     }
 
-    public LocalDateTime getCreatedTime() {
-        return createdTime;
+    public void setEditedTime() {
+        this.editedTime = LocalDateTime.now();
     }
 
-
-    public LocalDateTime getEditedTime() {
-        return editedTime;
+    public String getName(People people) {
+        if (people instanceof Person) {
+            Person person = (Person) people;
+            return people.name + " " + person.getSurname();
+        }
+        return people.name;
     }
 
-    public void setEditedTime(LocalDateTime editedTime) {
-        this.editedTime = editedTime;
+    public String getName() {
+        return name;
     }
 }

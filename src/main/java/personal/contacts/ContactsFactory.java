@@ -1,14 +1,27 @@
 package personal.contacts;
 
-public class ContactsFactory {
-    public static People getContacts(String type){
-        if(type.equalsIgnoreCase("person")){
-
-            return new Individual();
-        }else if(type.equalsIgnoreCase("organization")){
-            return new Organization();
+public class ContactsFactory extends AbstractContactsFactory {
+    @Override
+    public People getContacts(ContactsDetails contactsDetails) {
+        People people = null;
+        switch (contactsDetails.getType()) {
+            case "person":
+                people = new Person(
+                        contactsDetails.getName(),
+                        contactsDetails.getNumber(),
+                        contactsDetails.getSurname(),
+                        contactsDetails.getBirthDate(),
+                        contactsDetails.getGender());
+                break;
+            case "organization":
+                people = new Organization(
+                        contactsDetails.getName(),
+                        contactsDetails.getNumber(),
+                        contactsDetails.getAddress());
+                break;
+            default:
+                System.err.println("Unknown contacts type");
         }
-        return null;
+        return people;
     }
-
 }

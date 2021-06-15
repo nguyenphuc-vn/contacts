@@ -1,12 +1,8 @@
 package personal.contacts;
 
-import java.util.List;
-
 public interface Contactable {
-    public void addPerson(String name, String surname,String birthDate,String gender, String number);
+    void add(ContactsDetails contactsDetails);
 
-    public void addGroup(String name,String address, String number);
-
-
+    void edit(String selectedField, String inputSelectedFiled, People people);
 }
 

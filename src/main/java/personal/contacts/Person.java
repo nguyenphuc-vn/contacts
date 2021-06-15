@@ -1,15 +1,11 @@
 package personal.contacts;
 
-public class Individual extends People {
+public class Person extends People {
     private String surname;
     private String birthDate;
     private String gender;
 
-    public Individual() {
-        super();
-    }
-
-    public Individual(String name, String number, String surname, String birthDate, String gender) {
+    public Person(String name, String number, String surname, String birthDate, String gender) {
         super(name, number);
         this.surname = surname;
         this.birthDate = birthDate;
